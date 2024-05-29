@@ -14,9 +14,9 @@ public class Body : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && hands1.isclimb && hands2.isclimb)
+        if (((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && Input.GetKey("space")) && hands1.isclimb && hands2.isclimb)
             this.GetComponent<Rigidbody>().isKinematic = false;
-        if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1))
+        if ((!Input.GetMouseButton(0) && !Input.GetMouseButton(1)) || Input.GetKey("space"))
         {
             this.GetComponent<Rigidbody>().isKinematic = true;
             //float posx = transform.position.x;
@@ -24,5 +24,7 @@ public class Body : MonoBehaviour
             //float posy = transform.position.y - 1f;
             //transform.position = new Vector3(posx, posy, posz);
         }
+
+        
     }
 }

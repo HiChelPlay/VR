@@ -9,6 +9,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private GameObject text;
     [SerializeField] private GameObject ExitBtn;
+    [SerializeField] private Hands[] hands;
     
 
     private void Start()
@@ -22,21 +23,24 @@ public class Pause : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("escape") && !ispaused)
+        if (hands[0].isPause || hands[1].isPause)
         {
-            Time.timeScale = 0f;
-            ispaused = true;
-            image.color = new Color(1f, 1f, 1f, 0.5f);
-            text.SetActive(true);
-            ExitBtn.SetActive(true);
-        }
-        else if (Input.GetKeyDown("escape") && ispaused)
-        {
-            ispaused = false;
-            Time.timeScale = 1f;
-            image.color = new Color(1f, 1f, 1f, 0f);
-            text.SetActive(false);
-            ExitBtn.SetActive(false);
+            if (Input.GetKeyDown("escape") && !ispaused)
+            {
+                Time.timeScale = 0f;
+                ispaused = true;
+                image.color = new Color(1f, 1f, 1f, 0.5f);
+                text.SetActive(true);
+                ExitBtn.SetActive(true);
+            }
+            else if (Input.GetKeyDown("escape") && ispaused)
+            {
+                ispaused = false;
+                Time.timeScale = 1f;
+                image.color = new Color(1f, 1f, 1f, 0f);
+                text.SetActive(false);
+                ExitBtn.SetActive(false);
+            }
         }
     }
 
